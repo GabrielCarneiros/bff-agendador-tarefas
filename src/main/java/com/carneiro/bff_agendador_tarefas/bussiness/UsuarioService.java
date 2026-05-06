@@ -7,6 +7,7 @@ import com.carneiro.bff_agendador_tarefas.bussiness.dtos.in.UsuarioDTORequest;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.EnderecoDTO;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.TelefoneDTO;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.UsuarioDTO;
+import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.ViaCepDTO;
 import com.carneiro.bff_agendador_tarefas.infrastructure.client.UsuarioClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,9 @@ public class UsuarioService {
 
     public TelefoneDTO cadastroTelefone(String token, TelefoneDTORequest telefoneDTO){
         return usuarioClient.cadastraTelefone(telefoneDTO, token);
+    }
+
+    public ViaCepDTO buscarEnderecoPorCep(String cep){
+        return usuarioClient.buscaDadosCep(cep);
     }
 }
