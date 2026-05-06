@@ -7,7 +7,9 @@ import com.carneiro.bff_agendador_tarefas.bussiness.dtos.in.UsuarioDTORequest;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.EnderecoDTO;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.TelefoneDTO;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.UsuarioDTO;
+import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.ViaCepDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "usuario", url = "$(usuario.url")
@@ -43,4 +45,6 @@ public interface UsuarioClient {
     @PostMapping("/telefone")
     public TelefoneDTO cadastraTelefone(@RequestBody TelefoneDTORequest dto, @RequestHeader("Authorization") String token);
 
+    @GetMapping("/endereco{cep}")
+    public ViaCepDTO buscaDadosCep(@PathVariable("cep") String cep);
 }

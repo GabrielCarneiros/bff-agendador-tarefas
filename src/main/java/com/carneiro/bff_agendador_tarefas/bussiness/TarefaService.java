@@ -36,7 +36,7 @@ public class TarefaService {
        return client.alteraStatusNotificacao(status, id, token);
     }
 
-    public TarefasDTO updateTarefas(TarefasDTORequest dto, String id, String token){
+    public TarefasDTO updateTarefas(TarefasDTO dto, String id, String token){
        return client.updateTarefas(dto, id, token).getBody();
     }
 }

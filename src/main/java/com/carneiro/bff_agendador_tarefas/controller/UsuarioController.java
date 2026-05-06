@@ -8,6 +8,7 @@ import com.carneiro.bff_agendador_tarefas.bussiness.dtos.in.UsuarioDTORequest;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.EnderecoDTO;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.TelefoneDTO;
 import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.UsuarioDTO;
+import com.carneiro.bff_agendador_tarefas.bussiness.dtos.out.ViaCepDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -107,5 +108,14 @@ public class UsuarioController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     public ResponseEntity<TelefoneDTO> cadastraTelefone(@RequestBody TelefoneDTORequest dto, @RequestHeader(name = "Authorization", required = false) String token){
         return ResponseEntity.ok(usuarioService.cadastroTelefone(token, dto));
+    }
+
+    @GetMapping("/endereco/{cep}")
+    @Operation(summary = "Busca endereço pelo cep", description = "Busca dados de endereço recebendo um cep")
+    @ApiResponse(responseCode = "200", description = "Dados de endereço retornados")
+    @ApiResponse(responseCode = "400", description = "Cep inválido")
+    @ApiResponse(responseCode = "500", description = "Erro de servidor")
+    public ResponseEntity<ViaCepDTO> buscarEnderecoPorCep(@PathVariable("cep") String cep){
+        return ResponseEntity.ok(usuarioService.buscarEnderecoPorCep(cep));
     }
 }
